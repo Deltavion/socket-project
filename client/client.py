@@ -1,7 +1,5 @@
-#------------------client------------------#
 import socket
 import threading
-from tkinter import *
 import os
 
 PORT = 56789
@@ -11,47 +9,28 @@ NAME = os.getenv("USERNAME")
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #create a socket, socket type and mode
 client.connect(ADDR)
-name_encoded = NAME.encode()
-client.send(name_encoded)
+client.send(NAME.encode())
 
 def send(msg):
-    msg = msg.encode()
-    lenght = str(len(msg)).encode()
-
-    client.send(lenght)
-    client.send(msg)
+    client.send(str(len(msg)).encode()) # send the lenght of the msg, on 255 bytes
+    client.send(msg.encode()) # send the msg
 
 def main():
-    global run
     print(f"Successfully connected to {SERVER_IP}")
     print(f"Client IP : {socket.gethostbyname(socket.gethostname())}")
     print(f"Client name : {NAME}")
     print("=============================================================")
-    while run:
+    while True:
         recv_msg = client.recv(255).decode()
         print(recv_msg)
 
-def clicked():
-    global run
-    global text_input
-    msg = text_input.get()
-    text_input.delete(0,END)
-    if msg:
-        if msg == "-quit":
-            app.destroy()
-            run = False
-        send(msg)
 
-app = Tk()
 
-text_input = Entry(app, width=50)
-text_input.pack(padx=5, pady=5, side=LEFT)
-text_input.focus_force()
 
-btnAffiche = Button(app, text='Send', command=clicked)
-btnAffiche.pack(padx=5, pady=5)
 
-run = True
 thread = threading.Thread(target=main)
 thread.start()
-app.mainloop()
+
+while True:
+    msg = input()
+    send(msg)
