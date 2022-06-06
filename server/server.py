@@ -15,10 +15,11 @@ class Server:
         thread = threading.Thread(target=self.handle_client, args=(client, addr))
         thread.start()
 
-    def global_msg(self, msg):
+    def send(self, msg):
         print(msg)
         for client in self.clients_list:
-            client.send(msg.encode())
+            client.send(str(len(msg)).encode()) # send the lenght of the msg, on 255 bytes
+            client.send(msg.encode()) # send the msg
 
 
 
@@ -34,12 +35,10 @@ class Server:
         while connected:
             msg_lenght = client.recv(255).decode()
             if msg_lenght:
-                msg_lenght = int(msg_lenght)
-                msg = client.recv(msg_lenght).decode()
+                msg = client.recv(int(msg_lenght)).decode()
+                msg = f"[{name}] {msg}"
 
-                msg = f'[{name}] {msg}'
-
-                self.global_msg(msg)
+                self.send(msg)
 
         client.close()
 
