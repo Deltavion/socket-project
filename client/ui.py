@@ -5,6 +5,7 @@ from kivy.uix.boxlayout import BoxLayout
 import socket
 kivy.require("2.0.0")
 
+
 class View(BoxLayout):
     def __init__(self, **kwargs):
         super(View, self).__init__()
@@ -12,13 +13,10 @@ class View(BoxLayout):
         self.ip.text = socket.gethostbyname(socket.gethostname())
 
 
-
-
-
 class PacketApp(App):
     def build(self):
         return View()
 
 
-PacketApp = PacketApp()
-PacketApp.run()
+packetApp = PacketApp()
+packetApp.run()
