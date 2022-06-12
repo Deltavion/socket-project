@@ -1,16 +1,44 @@
 #:kivy 2.0.0
 
 <View>:
-    GridLayout:
-        cols: 2
+    username:username
+    ip:ip
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: 1,0.1
+        TextInput:
+            id: username_input
+            text: ""
+            size_hint: 0.8,1
+            border: 30, 30, 30, 30
+        Button:
+            text: "send"
+            size_hint: 0.2,1
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.2, 0.2
+        pos_hint: {"x":1, "y":0}
         Label:
-            text: "test"
+            id: username
+            text: "Username"
+        Label:
+            id: ip
+            text: "Ip"
+    
+
+
 
 <RV>:
     viewclass: 'Label'
+    size_hint: 0.2, 1
+    pos: 100, 100
     RecycleBoxLayout:
         default_size: None, dp(56)
         default_size_hint: 1, None
         size_hint_y: None
         height: self.minimum_height
         orientation: 'vertical'
+
+            
+
