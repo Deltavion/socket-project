@@ -1,6 +1,11 @@
 import kivy
 from kivy.app import App
+<<<<<<< HEAD
 
+=======
+import socket
+from kivy.uix.boxlayout import BoxLayout
+>>>>>>> delta
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.recycleview import RecycleView
@@ -13,11 +18,16 @@ class RV(RecycleView):
         super(RV, self).__init__(**kwargs)
 
 
+<<<<<<< HEAD
 class View(GridLayout):
+=======
+class View(BoxLayout):
+>>>>>>> delta
     def __init__(self, **kwargs):
         super(View, self).__init__(**kwargs)
         self.cols = 2
 
+<<<<<<< HEAD
         msgs = RV()
         msgs.data = [{"text": "Bienvenue sur le terminal SocketAPP"}]
         self.add_widget(msgs)
@@ -28,6 +38,24 @@ class View(GridLayout):
 
     def refresh_client(self):
         self.clients.data = [{"text": "coucou"}]
+=======
+
+        self.username.text = socket.gethostname()
+        self.ip.text = socket.gethostbyname(socket.gethostname())
+
+
+        #msgs = RV()
+        #msgs.data = [{"text": "Bienvenue sur le terminal SocketAPP"}]
+        #self.add_widget(msgs)
+
+        self.clients = RV()
+        self.clients.data = [{"text": "void"} for i in range(10)]
+
+        self.add_widget(self.clients)
+
+    def refresh_client(self):
+        self.clients.refresh_from_data(data=[{"text": "coucou"}])
+>>>>>>> delta
 
 
 class SocketApp(App):
@@ -42,3 +70,4 @@ class SocketApp(App):
 
 if __name__ == '__main__':
     SocketApp().run()
+
