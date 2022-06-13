@@ -15,24 +15,13 @@ class View(BoxLayout):
     def __init__(self, **kwargs):
         super(View, self).__init__(**kwargs)
 
-        # msgs = RV()
-        # msgs.data = [{"text": "Bienvenue sur le terminal SocketAPP"}]
-
-        # clients = RV()
-        # clients.data = [{"text": "void"} for i in range(10)]
-
-        # syntax : self.ids.<id>
-
-
         self.ids.clients_rv.data = [{"text": "void"} for i in range(10)]
-        self.ids.msg_rv.data = [{"text": "Bienvenue sur le terminal SocketAPP", "color": [0.10, 0.10, 0.10, 1]}]
-        
-        
+        self.ids.msg_rv.data = [{"text": "Bienvenue sur le terminal SocketAPP", "color": (0, 0, 0, 1)}]
+
 
 class SocketApp(App):
     def build(self):
-        self.mainView = View()
-        return self.mainView
+        return View()
 
 
 if __name__ == '__main__':

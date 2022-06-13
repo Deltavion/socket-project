@@ -15,10 +15,7 @@ CLIENT_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 #=====================================================================functions
 def backend():
-    global app
-    print("backend")
-    time.sleep(3)
-    print("back")
+    global app, running
 
     # # connection
     # CLIENT_SOCKET.connect(SERVER_ADDR)
@@ -50,11 +47,14 @@ def send(msg, socket):
 
 
 def handle_input():
+    global app, running
     msg = input()
     if msg:
-        send(msg, CLIENT_SOCKET)
-    if msg == "!quit":
-        pass
+        if msg == "!quit":
+            app.stop()
+            running = False
+        else:
+            send(msg, CLIENT_SOCKET)
 
 
 def handle_message():
@@ -65,9 +65,11 @@ def handle_message():
 
 
 #=====================================================================variables
-
+running = True
 
 #==========================================================================main
 app = gui.SocketApp()
 threading.Thread(target=backend).start()
+# view = app.build()
+# .ids.send_btn.bind(on_press=handle_input)
 app.run()
