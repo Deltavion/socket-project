@@ -18,7 +18,6 @@ def backend():
     global app
     print("backend")
     time.sleep(3)
-    app.refresh_client()
     print("back")
 
     # # connection
@@ -44,7 +43,6 @@ def backend():
     #     handle_message()
 
 
-
 def send(msg, socket):
     # send the lenght of the msg, on 255 bytes
     socket.send(str(len(msg)).encode())
@@ -58,11 +56,13 @@ def handle_input():
     if msg == "!quit":
         pass
 
+
 def handle_message():
     msg_lenght = CLIENT_SOCKET.recv(255).decode()
     if msg_lenght:
         msg = CLIENT_SOCKET.recv(int(msg_lenght)).decode()
         print(msg)
+
 
 #=====================================================================variables
 
