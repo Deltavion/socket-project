@@ -22,9 +22,12 @@ class View(BoxLayout):
         # clients.data = [{"text": "void"} for i in range(10)]
 
         # syntax : self.ids.<id>
-        self.ids.clients_rv.data = [{"text": "void"} for i in range(10)]
-        self.ids.msg_rv.data = [{"text": "Bienvenue sur le terminal SocketAPP"}]
 
+
+        self.ids.clients_rv.data = [{"text": "void"} for i in range(10)]
+        self.ids.msg_rv.data = [{"text": "Bienvenue sur le terminal SocketAPP", "color": [0.10, 0.10, 0.10, 1]}]
+        
+        
 
 class SocketApp(App):
     def build(self):
