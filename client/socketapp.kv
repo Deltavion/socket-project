@@ -1,15 +1,19 @@
 #:kivy 2.0.0
 
 <View>:
+    username:username_label
+    ip:ip_label
     BoxLayout:
         orientation: 'vertical'
-        # size_hint: 0.2, 0.2
+        size_hint: 0.2, 1
         pos_hint: {"x":1, "y":0}
 
         RV:
+            size_hint: 1, 0.8
             canvas.before:
+                
                 Color:
-                    rgba: 1, 0, 0, 1
+                    rgb: 0.20, 0.20, 0.20
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -17,9 +21,11 @@
             id: clients_rv
 
         Label:
+            size_hint: 1, 0.07
             canvas.before:
+                
                 Color:
-                    rgba: 0, 1, 0, 1
+                    rgb: 0.10, 0.10, 0.10
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -28,9 +34,11 @@
             text: "Username"
 
         Label:
+            size_hint: 1, 0.07
             canvas.before:
+                
                 Color:
-                    rgba: 0, 0, 1, 1
+                    rgb: 0.10, 0.10, 0.10
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -39,9 +47,10 @@
             text: "Ip"
 
     BoxLayout:
+        
         canvas.before:
             Color:
-                rgba: 1, 1, 1, 1
+                rgba: 0.20, 0.20, 0.20, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -51,33 +60,31 @@
 
         BoxLayout:
             orientation: 'horizontal'
-
+            
             RV:
                 canvas.before:
                     Color:
-                        rgba: 1, 0, 1, 1
+                        rgba: 0.80, 0.80, 0.80, 1
                     Rectangle:
                         pos: self.pos
                         size: self.size
-
                 id: msg_rv
+                color: 1,0,1,1 
+                
 
         BoxLayout:
             orientation: 'horizontal'
-
+            size_hint: 1, 0.1
             TextInput:
-                canvas.before:
-                    Color:
-                        rgba: 0, 1, 1, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
+                size_hint: 0.8, 1
 
+                hint_text: "Entrer votre message : "
                 id: msg_input
                 # size_hint: 0.8,1
                 # border: 30, 30, 30, 30
 
             Button:
+                size_hint: 0.2, 1
                 canvas.before:
                     Color:
                         rgba: 1, 1, 0, 1
